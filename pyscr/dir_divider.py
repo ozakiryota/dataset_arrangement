@@ -16,7 +16,6 @@ class DirDivider:
 
     def exec(self):
         root_dir = os.path.dirname(self.args.read_csv_path)
-        print(self.args.read_csv_path)
         with open(self.args.read_csv_path, 'r') as file_list_csv:
             file_list_list = list(csv.reader(file_list_csv))
             num_cols = len(file_list_list[0])
@@ -30,7 +29,7 @@ class DirDivider:
                     to_path = os.path.join(root_dir, dir_name, file_name)
                     print(from_path, "->", to_path)
                     shutil.copy2(from_path, to_path)
-    
+
 
 if __name__ == '__main__':
     dir_divider = DirDivider()
