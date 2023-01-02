@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-class FileListMaker:
+class DirDivider:
     def __init__(self):
         self.args = self.setArgument().parse_args()
     
@@ -33,5 +33,5 @@ class FileListMaker:
     
 
 if __name__ == '__main__':
-    file_list_maker = FileListMaker()
-    file_list_maker.exec()
+    dir_divider = DirDivider()
+    dir_divider.exec()
