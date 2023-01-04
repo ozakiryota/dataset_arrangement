@@ -15,9 +15,11 @@ RUN apt-get update && \
     apt-get install -y \
 	    python3-pip \
 		libgl1-mesa-dev \
-		libgtk2.0-dev && \
+		libgtk2.0-dev \
+		imagemagick && \
 	pip3 install \
-		opencv-python
+		opencv-python \
+		pillow
 ########## Cache Busting ##########
 ARG CACHEBUST=1
 ########## dataset_arrangement ##########
