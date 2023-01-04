@@ -4,7 +4,7 @@ import csv
 import os
 
 
-class FileListMaker:
+class FileListWrite:
     def __init__(self):
         self.args = self.setArgument().parse_args()
     
@@ -32,5 +32,5 @@ class FileListMaker:
 
 
 if __name__ == '__main__':
-    file_list_maker = FileListMaker()
-    file_list_maker.exec()
+    file_list_write = FileListWrite()
+    file_list_write.exec()

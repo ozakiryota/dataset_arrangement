@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-class DirDivider:
+class DirSort:
     def __init__(self):
         self.args = self.setArgument().parse_args()
     
@@ -32,5 +32,5 @@ class DirDivider:
 
 
 if __name__ == '__main__':
-    dir_divider = DirDivider()
-    dir_divider.exec()
+    dir_sort = DirSort()
+    dir_sort.exec()

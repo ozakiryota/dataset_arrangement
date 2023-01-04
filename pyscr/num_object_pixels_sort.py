@@ -4,7 +4,7 @@ import csv
 import cv2
 
 
-class FileListDivider:
+class NumObjectPixelsSort:
     def __init__(self):
         self.args = self.setArgument().parse_args()
     
@@ -39,5 +39,5 @@ class FileListDivider:
 
 
 if __name__ == '__main__':
-    file_list_divider = FileListDivider()
-    file_list_divider.exec()
+    num_object_pixels_sort = NumObjectPixelsSort()
+    num_object_pixels_sort.exec()
