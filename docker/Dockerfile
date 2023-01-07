@@ -19,7 +19,8 @@ RUN apt-get update && \
 		imagemagick && \
 	pip3 install \
 		opencv-python \
-		pillow
+		pillow \
+		natsort
 ########## Cache Busting ##########
 ARG CACHEBUST=1
 ########## dataset_arrangement ##########

@@ -2,6 +2,7 @@ import argparse
 import glob
 import csv
 import os
+import natsort
 
 
 class FileListWrite:
@@ -16,7 +17,7 @@ class FileListWrite:
         return arg_parser
 
     def exec(self):
-        file_path_list = glob.glob(self.args.read_dir_path + '/*')
+        file_path_list = natsort.natsorted(glob.glob(self.args.read_dir_path + '/*'))
         extracted_file_list = []
         for file_path in file_path_list:
             extension = file_path.split('.')[-1]
