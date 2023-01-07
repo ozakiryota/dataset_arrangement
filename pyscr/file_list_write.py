@@ -21,7 +21,7 @@ class FileListWrite:
         for file_path in file_path_list:
             extension = file_path.split('.')[-1]
             if extension in self.args.target_extension:
-                file_name = os.path.basename(file_path).split('.')[0]
+                file_name = os.path.basename(file_path)
                 extracted_file_list.append(file_name)
         extracted_file_list = list(zip(*[extracted_file_list]))
         write_csv_path = os.path.join(self.args.read_dir_path, self.args.write_csv_name)
