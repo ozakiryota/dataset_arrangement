@@ -14,14 +14,15 @@ class ImageRandomOverlay:
         arg_parser = argparse.ArgumentParser()
         arg_parser.add_argument('--read_csv_path', required=True)
         arg_parser.add_argument('--target_col', type=int, default=0)
-        arg_parser.add_argument('--front_image_dir', required=True)
+        arg_parser.add_argument('--front_image_dir_path', required=True)
+        arg_parser.add_argument('--write_dir_path')
         arg_parser.add_argument('--min_front_scale', type=float, default=0.1)
         arg_parser.add_argument('--max_front_scale', type=float, default=1.0)
         return arg_parser
 
     def getFrontImageList(self):
         target_extension = ['png', 'PNG']
-        file_list = glob.glob(self.args.front_image_dir + '/*')
+        file_list = glob.glob(self.args.front_image_dir_path + '/*')
         extracted_file_list = []
         for file_path in file_list:
             extension = file_path.split('.')[-1]
@@ -50,25 +51,27 @@ class ImageRandomOverlay:
         return result
 
     def exec(self):
-        root_dir = os.path.dirname(self.args.read_csv_path)
-        front_img_list = self.getFrontImageList()
-        write_dir = os.path.join(root_dir, '..', os.path.basename(root_dir) + "_superimposed")
-        if os.path.exists(write_dir) == False:
-            os.makedirs(write_dir)
+        root_dir_path = os.path.dirname(self.args.read_csv_path)
+        front_img_path_list = self.getFrontImageList()
+        if self.args.write_dir_path == None:
+            self.args.write_dir_path = root_dir_path
+        if os.path.exists(self.args.write_dir_path) == False:
+            os.makedirs(self.args.write_dir_path)
         with open(self.args.read_csv_path, 'r') as file_list_csv:
             csv_reader = csv.reader(file_list_csv)
             for file_list in csv_reader:
                 back_img_name = file_list[self.args.target_col]
-                back_img_path = os.path.join(root_dir, back_img_name)
-                front_img_path = random.choice(front_img_list)
+                back_img_path = os.path.join(root_dir_path, back_img_name)
+                front_img_path = random.choice(front_img_path_list)
                 back_img = Image.open(back_img_path)
                 front_img = Image.open(front_img_path)
                 width, height = back_img.size
                 front_img = self.resize(front_img, width, height)
                 front_img = self.padZero(front_img, width, height)
-                superimposed_image = Image.alpha_composite(back_img, front_img)
-                write_path = os.path.join(write_dir, back_img_name.split('.')[0] + "_superimposed.png")
-                superimposed_image.save(write_path)
+                overlayed_image = Image.alpha_composite(back_img, front_img)
+                write_path = os.path.join(self.args.write_dir_path, back_img_name.split('.')[0] + "_overlayed.png")
+                overlayed_image.save(write_path)
+                print("Save:", write_path)
 
 
 if __name__ == '__main__':
