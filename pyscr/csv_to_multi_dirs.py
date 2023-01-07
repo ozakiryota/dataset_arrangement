@@ -4,7 +4,7 @@ import os
 import shutil
 
 
-class DirSort:
+class CsvToMultiDirs:
     def __init__(self):
         self.args = self.setArgument().parse_args()
     
@@ -41,5 +41,5 @@ class DirSort:
 
 
 if __name__ == '__main__':
-    dir_sort = DirSort()
-    dir_sort.exec()
+    csv_to_multi_dirs = CsvToMultiDirs()
+    csv_to_multi_dirs.exec()

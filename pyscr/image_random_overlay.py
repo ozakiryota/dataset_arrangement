@@ -6,7 +6,7 @@ from PIL import Image
 import random
 
 
-class ImageSuperimposition:
+class ImageRandomOverlay:
     def __init__(self):
         self.args = self.setArgument().parse_args()
     
@@ -72,5 +72,5 @@ class ImageSuperimposition:
 
 
 if __name__ == '__main__':
-    image_superimposition = ImageSuperimposition()
-    image_superimposition.exec()
+    image_random_overlay = ImageRandomOverlay()
+    image_random_overlay.exec()
