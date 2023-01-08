@@ -2,8 +2,6 @@ import argparse
 import os
 import csv
 import cv2
-# import numpy as np
-# import matplotlib.pyplot as plt
 
 class RgbaCombine:
     def __init__(self):
