@@ -22,9 +22,17 @@ RUN apt-get update && \
 		pillow \
 		natsort
 ########## Cache Busting ##########
-ARG CACHEBUST=1
+ARG cachebust=1
 ########## dataset_arrangement ##########
-RUN cd ~ && \
+RUN mkdir -p /home/user && \
+	cd /home/user && \
 	git clone https://github.com/ozakiryota/dataset_arrangement.git
+########## User ##########
+RUN apt-get update && \
+	apt-get install -y gosu
+COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 ########## Initial Position ##########
-WORKDIR /root/dataset_arrangement
+WORKDIR /home/user/dataset_arrangement
+CMD ["bash"]
